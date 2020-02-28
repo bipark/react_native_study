@@ -1,31 +1,19 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import {createStackNavigator} from '@react-navigation/stack';
+
+import HomeScreen from './Home';
+import DetailScreen from '../Detail';
+
+const HomeStack = createStackNavigator();
 
 export default class Home extends Component {
 
-	state = {count: 0};
-
-	componentDidMount() {
-		console.log(this.props);
-		setInterval(() => {
-			this.setState({count: this.state.count + 1})
-		}, 1000)
-	}
-
 	render() {
-		const {count} = this.state;
-		const {color, size} = this.props;
-
 		return (
-			<View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-				<Text style={{fontSize: 60}}>
-					{count}
-				</Text>
-				<Button
-					title="Go to Details"
-					onPress={() => this.props.navigation.navigate('Profile')}
-				/>
-			</View>
+			<HomeStack.Navigator>
+				<HomeStack.Screen name="Home" component={HomeScreen}/>
+				<HomeStack.Screen name="Detail" component={DetailScreen}/>
+			</HomeStack.Navigator>
 		)
 	}
 }
