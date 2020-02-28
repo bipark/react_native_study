@@ -22,7 +22,9 @@ export default class HomeScreen extends Component {
 				</Text>
 				<Button
 					title="Go to Details"
-					onPress={() => this.props.navigation.navigate('Detail')}
+					onPress={() => this.props.navigation.navigate('Detail', {
+						title: "This is Param"
+					})}
 				/>
 			</View>
 		)

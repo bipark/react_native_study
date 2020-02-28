@@ -9,6 +9,12 @@ export default class Profile extends Component {
 				<Text style={{fontSize: 60}}>
 					Settings
 				</Text>
+				<Button
+					onPress={() => this.props.navigation.navigate('Detail', {
+						title:"From Settings"
+					})}
+					title="Open Modal"
+				/>
 			</View>
 		)
 	}

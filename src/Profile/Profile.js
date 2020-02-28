@@ -11,7 +11,9 @@ export default class Profile extends Component {
 				</Text>
 				<Button
 					title="Go to Details"
-					onPress={() => this.props.navigation.navigate('Detail')}
+					onPress={() => this.props.navigation.navigate('Detail', {
+						title:"From Profile"
+					})}
 				/>
 			</View>
 		)
