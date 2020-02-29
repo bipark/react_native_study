@@ -1,11 +1,15 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, View, Button } from 'react-native';
 
+
 export default class HomeScreen extends Component {
 
-	state = {count: 0};
+	state = {
+		count: 0,
+	};
 
 	componentDidMount() {
+
 		setInterval(() => {
 			this.setState({count: this.state.count + 1})
 		}, 1000)
