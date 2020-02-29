@@ -1,20 +1,32 @@
 import React, {Component} from 'react';
-import {Button, StyleSheet, Text, View, FlatList} from 'react-native';
+import {Button, StyleSheet, Text, View, FlatList, TouchableHighlight} from 'react-native';
 import axios from "axios";
 
-function Item({item}) {
+function Item({item, navigation}) {
+	_onPress = () => {
+		navigation.navigate('Detail', {
+			title: "This is Param",
+			item:item,
+		})
+	};
+
 	return (
-		<View style={styles.item}>
-			<Text style={styles.title}>{item.name}</Text>
-		</View>
+		<TouchableHighlight onPress={this._onPress}>
+			<View style={styles.item}>
+				<Text style={styles.title}>{item.name}</Text>
+			</View>
+		</TouchableHighlight>
 	)
 }
 
 export default class Profile extends Component {
 
-	state = {
-		persons: []
-	};
+	constructor(props) {
+		super(props);
+		this.state = {
+			persons: []
+		};
+	}
 
 	componentDidMount() {
 		axios.get("https://jsonplaceholder.typicode.com/users")
@@ -24,22 +36,11 @@ export default class Profile extends Component {
 	}
 
 	render() {
-
 		return (
 			<View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-				{/*<Text style={{fontSize: 60}}>*/}
-				{/*	Profile*/}
-				{/*</Text>*/}
-				{/*<Button*/}
-				{/*	title="Go to Details"*/}
-				{/*	onPress={() => this.props.navigation.navigate('Detail', {*/}
-				{/*		title:"From Profile"*/}
-				{/*	})}*/}
-				{/*/>*/}
-
 				<FlatList
 					data={this.state.persons}
-					renderItem={({item})=><Item item={item}/>}
+					renderItem={({item})=><Item item={item} navigation={this.props.navigation}/>}
 					keyExtractor={item=>item.id}
 				/>
 			</View>
