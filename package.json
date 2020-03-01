@@ -4,7 +4,9 @@
   "private": true,
   "scripts": {
     "android": "react-native run-android",
+    "build:android": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle",
     "ios": "react-native run-ios",
+    "build:ios": "NODE_ENV=production BABEL_ENV=production react-native bundle --entry-file='index.js' --bundle-output='./ios/main.jsbundle' --dev=false --platform='ios' --assets-dest='./ios'",
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint ."
